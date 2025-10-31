@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "YT Studio Spam Sweeper",
+  "version": "1.0.0",
+  "description": "Scan YouTube Studio comments for blacklisted text and profile images. Auto-select spam for fast bulk purges.",
+  "permissions": ["storage", "contextMenus", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://studio.youtube.com/*",
+    "https://*.youtube.com/*",
+    "https://*.ggpht.com/*",
+    "https://*.googleusercontent.com/*",
+    "https://*.ytimg.com/*"
+  ],
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://studio.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "YT Studio Spam Sweeper"
+  }
+}
